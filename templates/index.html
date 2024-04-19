@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Потом придумаю честно</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="static/telegram-web-app.js"></script>
+
+</head>
+<body>
+<div id="menu">
+    <div id="welcome-form">
+        <p>Привет, спасибо, что согласились пройти наш опрос.</p>
+        <p>Пожалуйста, введите ваше имя:</p>
+        <input type="text" id="name-input" placeholder="Введите ваше имя">
+        <p>Выберите свою роль:</p>
+        <select id="question-dropdown">
+            {% for question in peoples %}
+            <option value="{{ question }}">{{ question }}</option>
+            {% endfor %}
+        </select>
+        <button id="start-btn">Начать тестирование</button>
+    </div>
+</div>
+
+<div>
+    <!-- Контейнер для вопросов -->
+    <div id="question-container">
+        <!-- для текущего вопроса -->
+    </div>
+
+    <!-- Навигация по вопросам -->
+    <div id="navigation">
+        <button id="prev-btn" disabled>Назад</button>
+        <button id="next-btn">Вперед</button>
+    </div>
+
+    <!-- Контейнер для всех ответов -->
+    <div>
+        <div class="container-answers">
+            <table id="all-answers"></table>
+        </div>
+        <button id="submit-btn">Отправить ответы</button>
+        <button id="reject-btn" onclick="startAgain()">Начать заново</button>
+    </div>
+</div>
+
+<script>
+    var questions = [
+               {% for question in questions %}
+               "{{ question }}",
+               {% endfor %}
+           ];
+
+    var people = "{{ peoples[0] }}";
+    console.log(people);
+
+
+    var tg = window.Telegram.WebApp;
+    tg.MainButton.setText("Отправить ответы")
+    tg.MainButton.hide()
+
+    let currentQuestionIndex = 0;
+    var answers = {};
+    console.log(people)
+
+    Telegram.WebApp.onEvent('mainButtonClicked', function(){
+        const res = {}
+
+        people = document.getElementById("question-dropdown").value
+
+        res[people] = answers
+	    tg.sendData("Спасибо, что прошли опрос");
+	    fetch('/', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json'
+               },
+               body: JSON.stringify(res )
+           })
+           .then(response => {
+               if (response.ok) {
+                   console.log('Ответы успешно отправлены на сервер');
+               } else {
+                   console.error('Произошла ошибка при отправке ответов');
+               }
+           })
+           .catch(error => {
+               console.error('Произошла ошибка при отправке ответов:', error);
+           });
+	//при клике на основную кнопку отправляем данные в строковом виде
+    });
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

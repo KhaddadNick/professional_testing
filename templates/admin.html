@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Password Protected Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-group input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .form-group button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .data-container {
+        margin-top: 20px;
+    }
+    .data-container pre {
+        white-space: pre-wrap;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <form id="passwordForm">
+        <div class="form-group">
+            <label for="password">Enter Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <div class="data-container" id="dataContainer" style="display: none;">
+        <h2>Questions</h2>
+        <button id="editBtn">Edit Questions</button>
+        <pre id="questionsData"></pre>
+        <button id="downloadBtn">Download Answers</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById("passwordForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        var password = document.getElementById("password").value;
+        // Проверяем парол
+        if (password.toString() == ({{ password }}).toString()) {
+            document.getElementById("passwordForm").style.display = "none";
+            document.getElementById("dataContainer").style.display = "block";
+            loadQuestions();
+        } else {
+            alert("Incorrect password. Please try again.");
+        }
+    });
+
+    function loadQuestions() {
+        // загрузки данных из файла
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    document.getElementById("questionsData").textContent = xhr.responseText;
+                } else {
+                    document.getElementById("questionsData").textContent = "Error loading questions.";
+                }
+            }
+        };
+        xhr.open("GET", "/static/questions.txt", true);
+        xhr.send();
+    }
+
+    document.getElementById("editBtn").addEventListener("click", function() {
+        // Переход к странице редактирования вопросов
+        window.location.href = "/edit_questions";
+    });
+
+    document.getElementById("downloadBtn").addEventListener("click", function() {
+        window.location.href = "/download_answers";
+    });
+</script>
+</body>
+</html>

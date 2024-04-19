@@ -1,0 +1,327 @@
+/*body {
+            font-family: Arial, sans-serif;
+        }
+        .question-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .answers {
+            margin-top: 10px;
+        }
+        .answer {
+            margin-right: 10px;
+        }
+        #submit-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+.question-container {
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.answers {
+    margin-top: 10px;
+}
+
+.answer {
+    margin-right: 10px;
+    padding: 8px 20px;
+    font-size: 16px;
+    border: 1px solid #87ceeb;
+    background-color: #ffffff;
+    color: #333333;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.answer:hover {
+    background-color: #87ceeb;
+    color: #ffffff;
+}
+
+#submit-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #87ceeb;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#submit-btn:hover {
+    background-color: #4682b4;
+}
+
+.selected {
+        background-color: #87ceeb;
+        color: #ffffff;
+    }
+
+    #all-answers {
+        display: none;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #cccccc;
+    }
+
+    #all-answers li {
+        margin-bottom: 10px;
+    }
+
+   #question-container {
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #f0f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#navigation {
+    text-align: center;
+}
+
+button {
+    margin: 0 10px;
+    padding: 8px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #87ceeb;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#prev-btn {
+    background-color: #f0f8ff; / Голубой фон /
+    color: #333333; / Цвет текста /
+}
+
+#next-btn {
+    background-color: #f0f8ff; / Голубой фон /
+    color: #333333; / Цвет текста /
+}
+
+#submit-btn {
+    display: None;
+    margin: 20px auto;
+}
+
+#all-answers {
+    display: none; / Изначально скрываем список /
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #cccccc; / Серая линия сверху /
+}
+
+#all-answers li {
+    margin-bottom: 10px;
+}
+
+.selected {
+    background-color: #87ceeb; / Синий фон /
+    color: #ffffff; / Белый текст /
+}*/
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#question-container {
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.answers {
+    margin-top: 10px;
+}
+
+.answer {
+    margin-right: 10px;
+    padding: 8px 20px;
+    font-size: 16px;
+    border: 1px solid #87ceeb;
+    background-color: #ffffff;
+    color: #333333;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.answer:hover {
+    background-color: #87ceeb;
+    color: #ffffff;
+}
+
+#navigation {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+button {
+    margin: 0 10px;
+    padding: 8px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #87ceeb;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#prev-btn {
+    background-color: #f0f8ff;
+    color: #333333;
+}
+
+#next-btn {
+    background-color: #f0f8ff;
+    color: #333333;
+}
+
+#submit-btn, #reject-btn {
+    display: none;
+    margin: 20px auto;
+}
+
+#all-answers {
+    display: none;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #cccccc;
+}
+
+#all-answers li {
+    margin-bottom: 10px;
+}
+
+.selected {
+    background-color: #87ceeb;
+    color: #ffffff;
+}
+
+.container-answers{
+    width: 100%;
+    height: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+#all-answers{
+    width: 30.836vw;
+    height: 43.333vh;
+    overflow-y: scroll;
+}
+
+#menu {
+    position: absolute;
+    width: 500px;
+    margin-right: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+#question-dropdown {
+    width: 100%;
+    padding: 8px 12px; /* Поля вокруг элементов списка */
+    font-size: 16px; /* Размер шрифта */
+    border: 1px solid #87ceeb; /* Граница списка */
+    border-radius: 20px; /* Закругление углов списка */
+    background-color: #ffffff; /* Цвет фона списка */
+    color: #333333; /* Цвет текста списка */
+    cursor: pointer; /* Изменение формы курсора при наведении на список */
+    transition: background-color 0.3s, color 0.3s; /* Плавное изменение цвета фона и текста */
+}
+
+#question-dropdown:hover {
+    background-color: #87ceeb; /* Изменение цвета фона при наведении на список */
+    color: #ffffff; /* Изменение цвета текста при наведении на список */
+}
+
+.question-table{
+    width: 70%;
+    height: fit-content;
+}
+
+
+table {
+  width: 100%;
+  height: fit-content;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f2f2f2;
+}
+
+.question-count{
+    position: relative;
+    margin-right: 250px;
+    margin-bottom:15px;
+    margin-top: -5px;
+    top: 0;
+    left: 0;
+    font-size: 12px;
+}
